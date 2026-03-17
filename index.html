@@ -1,1 +1,351 @@
 
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Frontend Dev Blog</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #f5f7fb;
+      --card: #ffffff;
+      --text: #1f2937;
+      --sub-text: #6b7280;
+      --point: #2563eb;
+      --line: #e5e7eb;
+      --shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    }
+
+    body {
+      font-family: "Pretendard", "Noto Sans KR", sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 40px 24px;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .profile-card,
+    .post-card,
+    .top-banner {
+      background-color: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .profile-card {
+      position: sticky;
+      top: 24px;
+      padding: 28px;
+    }
+
+    .profile-image {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #2563eb, #60a5fa);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .profile-card h1 {
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+
+    .profile-role {
+      font-size: 14px;
+      color: var(--point);
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .profile-desc {
+      font-size: 15px;
+      color: var(--sub-text);
+      margin-bottom: 24px;
+    }
+
+    .profile-info {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .profile-info div {
+      font-size: 14px;
+      color: var(--sub-text);
+    }
+
+    .profile-info strong {
+      color: var(--text);
+      margin-right: 6px;
+    }
+
+    .profile-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .profile-links a {
+      text-decoration: none;
+      color: var(--point);
+      border: 1px solid #bfdbfe;
+      background-color: #eff6ff;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 500;
+      transition: 0.2s;
+    }
+
+    .profile-links a:hover {
+      background-color: #dbeafe;
+    }
+
+    .main-content {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .top-banner {
+      padding: 28px;
+    }
+
+    .top-banner .label {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--point);
+      background-color: #eff6ff;
+      padding: 6px 12px;
+      border-radius: 999px;
+      margin-bottom: 14px;
+    }
+
+    .top-banner h2 {
+      font-size: 30px;
+      margin-bottom: 10px;
+    }
+
+    .top-banner p {
+      color: var(--sub-text);
+      font-size: 16px;
+    }
+
+    .section-title {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .section-sub {
+      color: var(--sub-text);
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+
+    .post-list {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .post-card {
+      padding: 24px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .post-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+    }
+
+    .post-meta {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+      font-size: 13px;
+      color: var(--sub-text);
+    }
+
+    .tag {
+      background-color: #f3f4f6;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+    }
+
+    .post-card h3 {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    .post-card p {
+      color: var(--sub-text);
+      margin-bottom: 16px;
+      font-size: 15px;
+    }
+
+    .read-more {
+      text-decoration: none;
+      color: var(--point);
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .read-more:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 900px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .profile-card {
+        position: static;
+      }
+
+      .top-banner h2 {
+        font-size: 24px;
+      }
+
+      .post-card h3 {
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="layout">
+
+      <!-- 왼쪽 프로필 영역 -->
+      <aside class="profile-card">
+        <div class="profile-image">TW</div>
+        <h1>김태완</h1>
+        <div class="profile-role">Frontend Developer · Blog Writer</div>
+        <p class="profile-desc">
+          사용자 경험을 중요하게 생각하는 프론트엔드 개발자입니다.
+          HTML, CSS, JavaScript를 기반으로 깔끔하고 직관적인 웹 인터페이스를 만드는 과정을 기록합니다.
+        </p>
+
+        <div class="profile-info">
+          <div><strong>관심사</strong> UI/UX, 웹 퍼블리싱, JavaScript</div>
+          <div><strong>기술스택</strong> HTML, CSS, JavaScript, React</div>
+          <div><strong>업데이트</strong> 주 2~3회 포스팅</div>
+        </div>
+
+        <div class="profile-links">
+          <a href="#">GitHub</a>
+          <a href="#">Portfolio</a>
+          <a href="#">Contact</a>
+        </div>
+      </aside>
+
+      <!-- 오른쪽 메인 게시글 영역 -->
+      <main class="main-content">
+        <section class="top-banner">
+          <span class="label">개발 블로그</span>
+          <h2>기록하며 성장하는 프론트엔드 개발자</h2>
+          <p>
+            학습한 내용을 정리하고, 직접 부딪히며 해결한 문제들을 글로 남깁니다.
+            코드와 UI, 그리고 사용자 경험에 대해 꾸준히 탐구합니다.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="section-title">Latest Posts</h2>
+          <p class="section-sub">최근 작성한 게시글입니다.</p>
+
+          <div class="post-list">
+            <article class="post-card">
+              <div class="post-meta">
+                <span>2026.03.17</span>
+                <span class="tag">HTML</span>
+                <span class="tag">CSS</span>
+              </div>
+              <h3>시맨틱 태그를 사용해야 하는 이유</h3>
+              <p>
+                div만으로 구조를 만드는 것과 semantic HTML을 사용하는 것은 큰 차이가 있습니다.
+                접근성, 유지보수, SEO 측면에서 왜 중요한지 정리해봤습니다.
+              </p>
+              <a href="#" class="read-more">게시글 읽기 →</a>
+            </article>
+
+            <article class="post-card">
+              <div class="post-meta">
+                <span>2026.03.14</span>
+                <span class="tag">JavaScript</span>
+                <span class="tag">DOM</span>
+              </div>
+              <h3>DOM 조작을 할 때 자주 하는 실수 5가지</h3>
+              <p>
+                초반에 자주 겪는 선택자 문제, 이벤트 처리 실수, innerHTML 남용 문제를 실제 예시와 함께 정리했습니다.
+              </p>
+              <a href="#" class="read-more">게시글 읽기 →</a>
+            </article>
+
+            <article class="post-card">
+              <div class="post-meta">
+                <span>2026.03.10</span>
+                <span class="tag">UI</span>
+                <span class="tag">Frontend</span>
+              </div>
+              <h3>좋은 프론트엔드란 무엇인가</h3>
+              <p>
+                단순히 화면이 보이는 것에서 끝나는 것이 아니라,
+                사용자가 편하게 느끼는 흐름까지 설계하는 것이 프론트엔드라고 생각합니다.
+              </p>
+              <a href="#" class="read-more">게시글 읽기 →</a>
+            </article>
+
+            <article class="post-card">
+              <div class="post-meta">
+                <span>2026.03.05</span>
+                <span class="tag">CSS</span>
+                <span class="tag">Layout</span>
+              </div>
+              <h3>Grid와 Flex를 언제 어떻게 써야 할까?</h3>
+              <p>
+                레이아웃을 만들 때 Grid와 Flex 중 무엇을 써야 할지 헷갈릴 때가 많습니다.
+                각각의 역할과 실전 사용 기준을 예제로 정리했습니다.
+              </p>
+              <a href="#" class="read-more">게시글 읽기 →</a>
+            </article>
+          </div>
+        </section>
+      </main>
+
+    </div>
+  </div>
+</body>
+</html>
